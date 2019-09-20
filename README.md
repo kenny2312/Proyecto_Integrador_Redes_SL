@@ -22,7 +22,7 @@ _Pasos de instalacion en la pag oficial de mininet [aqui](http://mininet.org/dow
 
 ## Ejecutando las pruebas ⚙️
 
-_Escriviendo esto en un script de python puede ejecutarlo._
+_Escribiendo esto en un script de python puede ejecutarlo._
 
 
 ### Y las pruebas de estilo de codificación ⌨️
