@@ -28,7 +28,6 @@ _Escriviendo esto en un script de python puede ejecutarlo._
 ### Y las pruebas de estilo de codificación ⌨️
 
 <p align="center"> 
-
 <img src="https://i.pinimg.com/236x/17/0d/a0/170da077057300c4ab336d030926017c.jpg" width="350"/> 
 </p>
 
