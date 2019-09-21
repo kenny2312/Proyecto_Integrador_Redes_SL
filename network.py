@@ -11,7 +11,7 @@ from mininet.link import TCLink, Intf
 from subprocess import call
 
 def myNetwork():
-	
+
 net = Mininet( topo=None,
                    build=False,
                    ipBase='117.8.4.0/8',
@@ -22,7 +22,7 @@ net = Mininet( topo=None,
                       controller=Controller,
                       protocol='tcp',
                       port=6633)
-                      
+
     info( '*** Add switches\n')
     s4 = net.addSwitch('s4')
     s2 = net.addSwitch('s2')
@@ -44,7 +44,42 @@ net = Mininet( topo=None,
     h2 = net.addHost('h2',  ip='117.8.4.2')
 
 
-    
+    info( '*** Add links\n')
+    net.addLink(s2, h1, bw=100, delay='10ms')
+    net.addLink(s2, h2, bw=100, delay='10ms')
+    net.addLink(s1, s2, bw=100, delay='100ms')
+    net.addLink(s2, s3, bw=100, delay='100ms')
+    net.addLink(s3, s4, bw=100, delay='100ms')
+    net.addLink(s4, s5, bw=100, delay='100ms')
+    net.addLink(s1, s6, bw=100, delay='100ms')
+    net.addLink(s6, s7, bw=100, delay='100ms')
+    net.addLink(s7, s8, bw=100, delay='100ms')
+    net.addLink(s4, h3, bw=100, delay='10ms')
+    net.addLink(s5, h4, bw=100, delay='10ms')
+    net.addLink(s5, h5, bw=100, delay='10ms')
+    net.addLink(s6, h7, bw=100, delay='10ms')
+    net.addLink(s6, h8, bw=100, delay='10ms')
+    net.addLink(s8, h6, bw=100, delay='10ms')
+
+    info( '*** Starting network\n')
+    net.build()
+    info( '*** Starting controllers\n')
+    for controller in net.controllers:
+        controller.start()
+
+    info( '*** Starting switches\n')
+    net.get('s4').start([c0])
+    net.get('s2').start([c0])
+    net.get('s8').start([c0])
+    net.get('s1').start([c0])
+    net.get('s3').start([c0])
+    net.get('s7').start([c0])
+    net.get('s5').start([c0])
+    net.get('s6').start([c0])
+
+    info( '*** Post configure switches and hosts\n')
+    net.pingAll()
+    net.stop()
 
 
 
@@ -54,4 +89,4 @@ net = Mininet( topo=None,
 
 if __name__ == '__main__':
     setLogLevel( 'info' )
-    myNetwork()	
+    myNetwork()
